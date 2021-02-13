@@ -36,10 +36,8 @@ namespace Lesson002
         }
 
         public static int CalculateAverageTempe()
-        {            
-            string Tempo;
+        {
             int TMin = 0, TMax = 0, TAverage = 0;
-            
 
             Console.WriteLine("Введите минимальную температуру за сутки ");
             TMin = GetNumberFromString();
@@ -104,11 +102,6 @@ namespace Lesson002
                 return;
             }
             Console.WriteLine("Нечётное");
-        }
-
-        public static void Fourero()
-        {
-
         }
     }
 }

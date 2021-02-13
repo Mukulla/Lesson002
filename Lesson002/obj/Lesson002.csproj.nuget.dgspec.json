@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Projects\\Repos\\Lesson002\\Lesson002\\Lesson002.csproj": {}
+    "C:\\Git\\Lessons\\Lesson002\\Lesson002\\Lesson002.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Projects\\Repos\\Lesson002\\Lesson002\\Lesson002.csproj": {
+    "C:\\Git\\Lessons\\Lesson002\\Lesson002\\Lesson002.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Projects\\Repos\\Lesson002\\Lesson002\\Lesson002.csproj",
+        "projectUniqueName": "C:\\Git\\Lessons\\Lesson002\\Lesson002\\Lesson002.csproj",
         "projectName": "Lesson002",
-        "projectPath": "C:\\Git\\Projects\\Repos\\Lesson002\\Lesson002\\Lesson002.csproj",
+        "projectPath": "C:\\Git\\Lessons\\Lesson002\\Lesson002\\Lesson002.csproj",
         "packagesPath": "C:\\Users\\1024\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Projects\\Repos\\Lesson002\\Lesson002\\obj\\",
+        "outputPath": "C:\\Git\\Lessons\\Lesson002\\Lesson002\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
