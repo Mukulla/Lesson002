@@ -1,0 +1,11 @@
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.exe
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.deps.json
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.runtimeconfig.json
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.runtimeconfig.dev.json
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.dll
+C:\Git\Projects\Repos\Lesson002\Lesson002\bin\Debug\netcoreapp3.1\Lesson002.pdb
+C:\Git\Projects\Repos\Lesson002\Lesson002\obj\Debug\netcoreapp3.1\Lesson002.csprojAssemblyReference.cache
+C:\Git\Projects\Repos\Lesson002\Lesson002\obj\Debug\netcoreapp3.1\Lesson002.AssemblyInfoInputs.cache
+C:\Git\Projects\Repos\Lesson002\Lesson002\obj\Debug\netcoreapp3.1\Lesson002.AssemblyInfo.cs
+C:\Git\Projects\Repos\Lesson002\Lesson002\obj\Debug\netcoreapp3.1\Lesson002.dll
+C:\Git\Projects\Repos\Lesson002\Lesson002\obj\Debug\netcoreapp3.1\Lesson002.pdb
