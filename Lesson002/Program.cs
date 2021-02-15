@@ -138,7 +138,7 @@ namespace Lesson002
             PrepareArray(ref Checkimage);
 
             //Записываем содержание чека
-            CopyStringToArray( StartHeight, BaseWidth, "FOESTOUA MORKOT", ref Checkimage );
+            CopyStringToArray( StartHeight, BaseWidth, "FORESTOUWAWA MORKOTTO", ref Checkimage );
             StartHeight += 2;
 
             CopyStringToArray( StartHeight, BaseWidth, "3015 Adoms Ovonou", ref Checkimage );
