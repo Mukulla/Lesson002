@@ -8,39 +8,53 @@ namespace Lesson002
         {
             Executor();
         }
+
+
         public static void Executor()
         {
-            int Avaragou, Monthou, Number = 1, Index = 0;
+            int Avaragou = 0, Monthou = 0, Number = 1, Index = 0, CountPars = 7;
             string Pars = "Часть";
             char Locus = ' ';
-            string[] Denuntiatio = new string[] { "Средняя температура за сутки", "Название месяца по номеру", "Определение чётности числа", "Итог по температуре и месяцам" };
-                       
-            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
-            Avaragou = CalculateAverageTempe();
-            Update( ref Number, ref Index );
+            string[] Denuntiatio = new string[] { "Средняя температура за сутки", "Название месяца по номеру", "Определение чётности числа", "Отображение чека", "Итог по температуре и месяцам", "Универсальнуая структура расписания недели", "Определение високосности года" };
 
-            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
-            Monthou = NameMonth();
-            Console.WriteLine();
-
-            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
-            DetermineTheNumber();
-            Console.WriteLine();
-
-
-            if (Avaragou > 0)
+            for( int i = 0; i < CountPars; ++i )
             {
-                if (Monthou > -1 && Monthou < 1 || Monthou == 11)
+                Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
+
+                switch ( Index )
                 {
-                    Console.WriteLine("Часть четвёртая - Итог по температуре и месяцам");
-                    Console.WriteLine("Дождливая зима");
+                    case 0:
+                        Avaragou = CalculateAverageTempe();
+                        break;
+                    case 1:
+                        Monthou = NameMonth();
+                        break;
+                    case 2:
+                        DetermineTheNumber();
+                        break;
+                    case 3:
+                        ShowCheck();
+                        break;
+                    case 4:
+                        ReprehendoHieme( ref Avaragou, ref Monthou );
+                        break;
+                    case 5:
+                        OfficiumCompages();
+                        break;
                 }
+                if ( Index == 6 )
+                {
+                    CheckYear();
+                    
+                    Console.WriteLine();
+                    Console.WriteLine("Для завершения нажмите любую клавишу");
+                    Console.ReadKey();
+
+                    break;
+                }
+
+                Update(ref Number, ref Index);
             }
-
-            Console.WriteLine();
-            Console.WriteLine("Для завершения нажмите любую клавишу");
-            Console.ReadKey();
-
         }
 
         public static int CalculateAverageTempe()
@@ -72,7 +86,7 @@ namespace Lesson002
             //Получаем символы в строке
             TempoString = Console.ReadLine();
             //Проверяем на соответствие типу int
-            if( !int.TryParse(TempoString, out SomeValue) )
+            if( !int.TryParse( TempoString, out SomeValue ) )
             {
                 SomeValue = 0;
             }
@@ -101,15 +115,64 @@ namespace Lesson002
 
         public static void DetermineTheNumber()
         {
-            Console.WriteLine("Введите число ");
+            Console.WriteLine( "Введите число " );
             int SomeNumber = GetNumberFromString();
 
             if( ( SomeNumber %= 2 ) == 0 )
             {
-                Console.WriteLine("Чётное");
+                Console.WriteLine( "Чётное" );
                 return;
             }
-            Console.WriteLine("Нечётное");
+            Console.WriteLine( "Нечётное" );
+        }
+
+        public static void ShowCheck()
+        {
+
+        }
+
+        public static void ReprehendoHieme( ref int Avaragou001, ref int Monthou001)
+        {
+            if ( Avaragou001 > 0 )
+            {
+                if ( Monthou001 > -1 && Monthou001 < 1 || Monthou001 == 11 )
+                {
+                    Console.WriteLine( "Часть четвёртая - Итог по температуре и месяцам" );
+                    Console.WriteLine( "Дождливая зима" );
+                }
+            }
+        }
+
+        public static void OfficiumCompages()
+        {
+
+        }
+
+        public static void CheckYear()
+        {
+            int SomeYear = GetNumberFromString();
+
+            if( Checkerreiro( ref SomeYear ) )
+            {
+                Console.WriteLine( "Указанный год високосный" );
+            }
+            Console.WriteLine( "Указанный год НЕ високосный" );
+        }
+        public static bool Checkerreiro( ref int SomeYear001 )
+        {
+            if ( ( SomeYear001 % 4 == 0 ) )
+            {
+                if ( SomeYear001 % 400 == 0)
+                {
+                    return true;
+                }
+                if ( SomeYear001 % 100 == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         public static void Update( ref int Value001, ref int Value002 )
@@ -118,7 +181,7 @@ namespace Lesson002
             ++Value002;
 
             Console.WriteLine();
-            Console.WriteLine("Для продолжения нажмите любую клавишу");            
+            Console.WriteLine( "Для продолжения нажмите любую клавишу" );            
             Console.ReadKey();
             Console.Clear();
         }
