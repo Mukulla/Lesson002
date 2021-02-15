@@ -6,21 +6,28 @@ namespace Lesson002
     {
         static void Main(string[] args)
         {
-            int Avaragou, Monthou;
-            
-            Console.WriteLine("Часть первая - Средняя температура за сутки");            
+            Executor();
+        }
+        public static void Executor()
+        {
+            int Avaragou, Monthou, Number = 1, Index = 0;
+            string Pars = "Часть";
+            char Locus = ' ';
+            string[] Denuntiatio = new string[] { "Средняя температура за сутки", "Название месяца по номеру", "Определение чётности числа", "Итог по температуре и месяцам" };
+                       
+            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
             Avaragou = CalculateAverageTempe();
-            Console.WriteLine();
-            
-            Console.WriteLine("Часть вторая - Название месяца по номеру");
+            Update( ref Number, ref Index );
+
+            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
             Monthou = NameMonth();
             Console.WriteLine();
-            
-            Console.WriteLine("Часть третья - Определение чётности числа");
+
+            Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
             DetermineTheNumber();
             Console.WriteLine();
 
-            
+
             if (Avaragou > 0)
             {
                 if (Monthou > -1 && Monthou < 1 || Monthou == 11)
@@ -33,6 +40,7 @@ namespace Lesson002
             Console.WriteLine();
             Console.WriteLine("Для завершения нажмите любую клавишу");
             Console.ReadKey();
+
         }
 
         public static int CalculateAverageTempe()
@@ -102,6 +110,17 @@ namespace Lesson002
                 return;
             }
             Console.WriteLine("Нечётное");
+        }
+
+        public static void Update( ref int Value001, ref int Value002 )
+        {
+            ++Value001;
+            ++Value002;
+
+            Console.WriteLine();
+            Console.WriteLine("Для продолжения нажмите любую клавишу");            
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
