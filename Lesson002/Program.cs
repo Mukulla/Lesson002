@@ -18,36 +18,36 @@ namespace Lesson002
             char Locus = ' ';
             string[] Denuntiatio = new string[] { "Средняя температура за сутки", "Название месяца по номеру", "Определение чётности числа", "Отображение чека", "Итог по температуре и месяцам", "Универсальнуая структура расписания недели", "Определение високосности года" };
             //Цикл-обработчик каждого задания
-            for( int i = 0; i < CountPars; ++i )
+            for (int i = 0; i < CountPars; ++i)
             {
                 //Вывод части и названия задания
-                Console.WriteLine( Pars + Locus + Number + Locus + Denuntiatio[ Index ] );
+                Console.WriteLine(Pars + Locus + Number + Locus + Denuntiatio[Index]);
 
-                switch ( Index )
+                switch (Index)
                 {
                     case 0:
-                        Avaragou = CalculateAverageTempe();
+                        //Avaragou = CalculateAverageTempe();
                         break;
                     case 1:
-                        Monthou = NameMonth();
+                        //Monthou = NameMonth();
                         break;
                     case 2:
-                        DetermineTheNumber();
+                        //DetermineTheNumber();
                         break;
                     case 3:
                         ShowCheck();
                         break;
                     case 4:
-                        ReprehendoHieme( ref Avaragou, ref Monthou );
+                        //ReprehendoHieme( ref Avaragou, ref Monthou );
                         break;
                     case 5:
-                        OfficiumCompages();
+                        //OfficiumCompages();
                         break;
                 }
-                if ( Index == 6 )
+                if (Index == 6)
                 {
                     CheckYear();
-                    
+
                     Console.WriteLine();
                     Console.WriteLine("Все части пройдены");
                     Console.WriteLine("Для выхода нажмите любую клавишу");
@@ -70,15 +70,15 @@ namespace Lesson002
             Console.WriteLine("Введите максимальную температуру за сутки ");
             TMax = GetNumberFromString();
 
-            if( TMin > TMax)
+            if (TMin > TMax)
             {
                 int Swapperou = TMin;
                 TMin = TMax;
                 TMax = Swapperou;
             }
 
-            TAverage = ( TMin + TMax ) / 2;
-            Console.WriteLine( "Средняя температура за день равна: " + TAverage );
+            TAverage = (TMin + TMax) / 2;
+            Console.WriteLine("Средняя температура за день равна: " + TAverage);
             return TAverage;
         }
         //Получение числа из строки с проверками на неверные значения, по умолчанию выдаёт ноль
@@ -89,7 +89,7 @@ namespace Lesson002
             //Получаем символы в строке
             TempoString = Console.ReadLine();
             //Проверяем на соответствие типу int
-            if( !int.TryParse( TempoString, out SomeValue ) )
+            if (!int.TryParse(TempoString, out SomeValue))
             {
                 SomeValue = 0;
             }
@@ -106,133 +106,70 @@ namespace Lesson002
             if (ENM < 0)
             {
                 ENM = 0;
-            }               
+            }
             if (ENM > 11)
             {
                 ENM = 11;
             }
 
-            Console.WriteLine( Months[ ENM ] );
+            Console.WriteLine(Months[ENM]);
             return ENM;
         }
         //Проверка чётности числа
         public static void DetermineTheNumber()
         {
-            Console.WriteLine( "Введите число" );
+            Console.WriteLine("Введите число");
             int SomeNumber = GetNumberFromString();
 
-            if( ( SomeNumber %= 2 ) == 0 )
+            if ((SomeNumber %= 2) == 0)
             {
-                Console.WriteLine( "Чётное" );
+                Console.WriteLine("Чётное");
                 return;
             }
-            Console.WriteLine( "Нечётное" );
+            Console.WriteLine("Нечётное");
         }
         //Печать подобия чека в консоль
         public static void ShowCheck()
         {
-            int Width = 39, Height = 23, MoneyPlace = Width - 6, Solum = Height - 2, BaseWidth = 2, StartHeight = 2;
-
-            char[,] Checkimage = new char[Height, Width];
-            //Заполняем массив пробелами и границами
-            PrepareArray(ref Checkimage);
-
-            //Записываем содержание чека
-            CopyStringToArray( StartHeight, BaseWidth, "FORESTOUWAWA MORKOTTO", ref Checkimage );
-            StartHeight += 2;
-
-            CopyStringToArray( StartHeight, BaseWidth, "3015 Adoms Ovonou", ref Checkimage );
-            ++StartHeight;
-            CopyStringToArray( StartHeight, BaseWidth, "Soun Douegou, CA 45657", ref Checkimage );
-            ++StartHeight;
-            CopyStringToArray( StartHeight, BaseWidth, "(564) 8762 - 345", ref Checkimage );
-            StartHeight += 2;
-
-            CopyStringToArray( StartHeight, BaseWidth, "Pocca Mocorolla", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, "15 A", ref Checkimage );
-            ++StartHeight;
-            CopyStringToArray( StartHeight, BaseWidth, "Sokkow Ksovwollu", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, " 3 A", ref Checkimage );
-            ++StartHeight;
-            CopyStringToArray( StartHeight, BaseWidth, "Capsicum Frutum", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, " 9 A", ref Checkimage );
-            StartHeight += 2;
-
-            CopyStringToArray( StartHeight, BaseWidth, "Et Exitus", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, "27 A", ref Checkimage );
-            ++StartHeight;
-            CopyStringToArray( StartHeight, BaseWidth, "40 % HDC", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, "38 A", ref Checkimage );
-            StartHeight += 2;
-
-            CopyStringToArray( StartHeight, BaseWidth, "Quantitas", ref Checkimage );
-            CopyStringToArray( StartHeight, MoneyPlace, "3", ref Checkimage );
-
-            CopyStringToArray( Solum, BaseWidth, "ARIGATOUKOSAMUMASU", ref Checkimage );
-
-            //Отображаем
-            ShowArray( ref Checkimage );
-        }
-        public static void PrepareArray( ref char[,] SomeArray )
-        {
-            int Height = SomeArray.GetUpperBound(0) + 1;
-            int Width = SomeArray.Length / Height;
-
-            for (int i = 0; i < Height; ++i)
-            {
-                for (int j = 0; j < Width; ++j)
-                {
-                    if (i == 0 || i == (Height - 1))
-                    {
-                        SomeArray[i, j] = '-';
-                        continue;
-                    }
-                    if (j == 0 || j == (Width - 1))
-                    {
-                        SomeArray[i, j] = '|';
-                        continue;
-                    }
-                    SomeArray[i, j] = ' ';
-                }
-            }
-
-            SomeArray[0, 0] = '#';
-            SomeArray[0, Width - 1] = '#';
-            SomeArray[Height - 1, 0] = '#';
-            SomeArray[Height - 1, Width - 1] = '#';
-        }
-        public static void CopyStringToArray(int i001, int j001, string SomeString, ref char[,] SomeArray )
-        {
-            for  (int i = 0; i < SomeString.Length; ++i )
-            {
-                SomeArray[i001, j001] = SomeString[i];
-                ++j001;
-            }
-        }
-        public static void ShowArray(ref char[,] SomeArray)
-        {
-            int Height = SomeArray.GetUpperBound(0) + 1;
-            int Width = SomeArray.Length / Height;
+            int IntraSize = 37;
+            char EdgeBorder = '|', VertBorder = '-', AngleBorder = '#', Locus = ' ';
+            string LeftPad = "| ", RightPad = " |", Ce = " A";
             string Tempo = "";
 
-            for (int i = 0; i < Height; ++i)
-            {
-                for (int j = 0; j < Width; ++j)
-                {
-                    Tempo += SomeArray[i, j];
-                }
-                Console.WriteLine(Tempo);
-                Tempo = "";
-            }
-        }
+            string ChTop = AngleBorder + Tempo.PadLeft(IntraSize, VertBorder) + AngleBorder;
+            string EmptyLine = EdgeBorder + Tempo.PadLeft(IntraSize, Locus) + EdgeBorder;
+
+            int PMCe = 15, SKCe = 3, CFCe = 9, CountItems = 3 ;
+
+            Console.WriteLine(ChTop);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "FORESTOUWAWA MORKOTTO", RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "3015 Adoms Ovonou", RightPad);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Soun Douegou, CA 45657", RightPad);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "(564) 8762 - 345", RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Pocca Mocorolla", PMCe + Ce + RightPad);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Sokkow Ksovwollu", SKCe + Ce + RightPad);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Capsicum Frutum", CFCe + Ce + RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Et Exitus", (PMCe + SKCe + CFCe) + Ce + RightPad);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "40 % HDC", Math.Round(((PMCe + SKCe + CFCe) * 1.4)) + Ce + RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "Quantitas", CountItems + RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine("{0, -30} {1, 8}", LeftPad + "ARIGATOUKOSAMUMASU", RightPad);
+            Console.WriteLine(EmptyLine);
+            Console.WriteLine(ChTop);
+        }       
         //Проверка тёплости зимы, при условии, что до этого был введён номер одного из зимних месяцев
-        public static void ReprehendoHieme( ref int Avaragou001, ref int Monthou001)
+        public static void ReprehendoHieme(ref int Avaragou001, ref int Monthou001)
         {
-            if ( Avaragou001 > 0 )
+            if (Avaragou001 > 0)
             {
-                if ( Monthou001 > -1 && Monthou001 < 1 || Monthou001 == 11 )
+                if (Monthou001 > -1 && Monthou001 < 1 || Monthou001 == 11)
                 {
-                    Console.WriteLine( "Дождливая зима" );
+                    Console.WriteLine("Дождливая зима");
                     return;
                 }
             }
@@ -248,23 +185,23 @@ namespace Lesson002
         {
             int SomeYear = GetNumberFromString();
 
-            if( Checkerreiro( ref SomeYear ) )
+            if (Checkerreiro(ref SomeYear))
             {
-                Console.WriteLine( "Указанный год високосный" );
+                Console.WriteLine("Указанный год високосный");
                 return;
             }
-            Console.WriteLine( "Указанный год НЕ високосный" );
+            Console.WriteLine("Указанный год НЕ високосный");
         }
         //Дополнительная функция для удобного определения високосности с выходом из функции
-        public static bool Checkerreiro( ref int SomeYear001 )
+        public static bool Checkerreiro(ref int SomeYear001)
         {
-            if ( ( SomeYear001 % 4 == 0 ) )
+            if ((SomeYear001 % 4 == 0))
             {
-                if ( SomeYear001 % 400 == 0)
+                if (SomeYear001 % 400 == 0)
                 {
                     return true;
                 }
-                if ( SomeYear001 % 100 == 0)
+                if (SomeYear001 % 100 == 0)
                 {
                     return false;
                 }
@@ -274,13 +211,13 @@ namespace Lesson002
         }
         //Обновление счётчика частей и инекса списка
         //Объявление и очистка консоли
-        public static void Update( ref int Value001, ref int Value002 )
+        public static void Update(ref int Value001, ref int Value002)
         {
             ++Value001;
             ++Value002;
 
             Console.WriteLine();
-            Console.WriteLine( "Для перехода к следующей части нажмите любую клавишу" );            
+            Console.WriteLine("Для перехода к следующей части нажмите любую клавишу");
             Console.ReadKey();
             Console.Clear();
         }
