@@ -4,6 +4,18 @@ namespace Lesson002
 {
     class Program
     {
+        [Flags]
+        enum MaDays
+        {
+            Понедельник = 0b0_000_001,
+            Вторник =     0b0_000_010,
+            Среда =       0b0_000_100,
+            Четверг =     0b0_001_000,
+            Пятница =     0b0_010_000,
+            Суббота =     0b0_100_000,
+            Воскресенье = 0b1_000_000
+        }
+
         static void Main(string[] args)
         {
             Executor();
@@ -13,38 +25,36 @@ namespace Lesson002
         public static void Executor()
         {
             //Средняя температура, номер выполняемой части, номер выводимого задания, количество частей-заданий
-            int Avaragou = 0, Monthou = 0, Number = 1, Index = 0, CountPars = 7;
-            string Pars = "Часть";
-            char Locus = ' ';
+            int Avaragou = 0, Monthou = 0, CountPars = 7;
             string[] Denuntiatio = new string[] { "Средняя температура за сутки", "Название месяца по номеру", "Определение чётности числа", "Отображение чека", "Итог по температуре и месяцам", "Универсальнуая структура расписания недели", "Определение високосности года" };
             //Цикл-обработчик каждого задания
             for (int i = 0; i < CountPars; ++i)
             {
                 //Вывод части и названия задания
-                Console.WriteLine(Pars + Locus + Number + Locus + Denuntiatio[Index]);
+                Console.WriteLine($"Часть {i + 1}: {Denuntiatio[i]}");
 
-                switch (Index)
+                switch (i)
                 {
                     case 0:
-                        //Avaragou = CalculateAverageTempe();
+                        Avaragou = CalculateAverageTempe();
                         break;
                     case 1:
-                        //Monthou = NameMonth();
+                        Monthou = NameMonth();
                         break;
                     case 2:
-                        //DetermineTheNumber();
+                        DetermineTheNumber();
                         break;
                     case 3:
                         ShowCheck();
                         break;
                     case 4:
-                        //ReprehendoHieme( ref Avaragou, ref Monthou );
+                        ReprehendoHieme( ref Avaragou, ref Monthou );
                         break;
                     case 5:
-                        //OfficiumCompages();
+                        OfficiumCompages();
                         break;
                 }
-                if (Index == 6)
+                if (i == 6)
                 {
                     CheckYear();
 
@@ -56,7 +66,10 @@ namespace Lesson002
                     break;
                 }
 
-                Update(ref Number, ref Index);
+                Console.WriteLine();
+                Console.WriteLine("Для перехода к следующей части нажмите любую клавишу");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
         //Вычисление средней темературы за день
@@ -103,14 +116,7 @@ namespace Lesson002
             int ENM = GetNumberFromString();
             --ENM;
 
-            if (ENM < 0)
-            {
-                ENM = 0;
-            }
-            if (ENM > 11)
-            {
-                ENM = 11;
-            }
+            LeadToBoundaries(ref ENM, 0, 11);
 
             Console.WriteLine(Months[ENM]);
             return ENM;
@@ -131,15 +137,11 @@ namespace Lesson002
         //Печать подобия чека в консоль
         public static void ShowCheck()
         {
-            int IntraSize = 37;
-            char EdgeBorder = '|', VertBorder = '-', AngleBorder = '#', Locus = ' ';
             string LeftPad = "| ", RightPad = " |", Ce = " A";
-            string Tempo = "";
+            string ChTop = "#-------------------------------------#";
+            string EmptyLine = "|                                     |";
 
-            string ChTop = AngleBorder + Tempo.PadLeft(IntraSize, VertBorder) + AngleBorder;
-            string EmptyLine = EdgeBorder + Tempo.PadLeft(IntraSize, Locus) + EdgeBorder;
-
-            int PMCe = 15, SKCe = 3, CFCe = 9, CountItems = 3 ;
+            int PMCe = 15, SKCe = 3, CFCe = 9, CountItems = 3;
 
             Console.WriteLine(ChTop);
             Console.WriteLine(EmptyLine);
@@ -161,7 +163,7 @@ namespace Lesson002
             Console.WriteLine("{0, -30} {1, 8}", LeftPad + "ARIGATOUKOSAMUMASU", RightPad);
             Console.WriteLine(EmptyLine);
             Console.WriteLine(ChTop);
-        }       
+        }
         //Проверка тёплости зимы, при условии, что до этого был введён номер одного из зимних месяцев
         public static void ReprehendoHieme(ref int Avaragou001, ref int Monthou001)
         {
@@ -178,7 +180,27 @@ namespace Lesson002
         //Расписание работы чего-то
         public static void OfficiumCompages()
         {
+            Console.WriteLine("Ведите номер одного из трёх офисов для просмотра режма его работы");
+            MaDays SomeDays = (MaDays)0b_0000_000;
 
+            int NumberOffice = GetNumberFromString();
+            --NumberOffice;
+
+            LeadToBoundaries(ref NumberOffice, 0, 2);
+            switch (NumberOffice)
+            {
+                case 0:
+                    SomeDays = (MaDays)0b_01001_001;
+                    break;
+                case 1:
+                    SomeDays = MaDays.Понедельник | MaDays.Среда | MaDays.Воскресенье;
+                    break;
+                case 2:
+                    SomeDays = (MaDays)0b_0011_001;
+                    break;
+            }
+
+            Console.WriteLine($"Рабочие дни офиса номер {NumberOffice + 1} : {SomeDays}");
         }
         //Проверка года на високосность
         public static void CheckYear()
@@ -208,18 +230,18 @@ namespace Lesson002
                 return true;
             }
             return false;
-        }
-        //Обновление счётчика частей и инекса списка
-        //Объявление и очистка консоли
-        public static void Update(ref int Value001, ref int Value002)
+        }        
+        //Проверка некого числа на нахождение в указанных границах
+        public static void LeadToBoundaries(ref int Value001, int Min, int Max)
         {
-            ++Value001;
-            ++Value002;
-
-            Console.WriteLine();
-            Console.WriteLine("Для перехода к следующей части нажмите любую клавишу");
-            Console.ReadKey();
-            Console.Clear();
+            if (Value001 < Min)
+            {
+                Value001 = Min;
+            }
+            if (Value001 > Max)
+            {
+                Value001 = Max;
+            }
         }
     }
 }
