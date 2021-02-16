@@ -94,20 +94,7 @@ namespace Lesson002
             Console.WriteLine("Средняя температура за день равна: " + TAverage);
             return TAverage;
         }
-        //Получение числа из строки с проверками на неверные значения, по умолчанию выдаёт ноль
-        public static int GetNumberFromString()
-        {
-            string TempoString;
-            int SomeValue;
-            //Получаем символы в строке
-            TempoString = Console.ReadLine();
-            //Проверяем на соответствие типу int
-            if (!int.TryParse(TempoString, out SomeValue))
-            {
-                SomeValue = 0;
-            }
-            return SomeValue;
-        }
+        
         //Выдать по числу название месяца с проверками на выход за пределы, в случае которого выдаёт название предельного
         public static int NameMonth()
         {
@@ -230,7 +217,21 @@ namespace Lesson002
                 return true;
             }
             return false;
-        }        
+        }
+        //Получение числа из строки с проверками на неверные значения, по умолчанию выдаёт ноль
+        public static int GetNumberFromString()
+        {
+            string TempoString;
+            int SomeValue;
+            //Получаем символы в строке
+            TempoString = Console.ReadLine();
+            //Проверяем на соответствие типу int
+            if (!int.TryParse(TempoString, out SomeValue))
+            {
+                SomeValue = 0;
+            }
+            return SomeValue;
+        }
         //Проверка некого числа на нахождение в указанных границах
         public static void LeadToBoundaries(ref int Value001, int Min, int Max)
         {
