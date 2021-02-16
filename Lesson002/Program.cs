@@ -91,7 +91,7 @@ namespace Lesson002
             }
 
             TAverage = (TMin + TMax) / 2;
-            Console.WriteLine("Средняя температура за день равна: " + TAverage);
+            Console.WriteLine("Средняя температура за день равна: {TAverage}");
             return TAverage;
         }
         
